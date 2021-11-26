@@ -1,0 +1,47 @@
+본 쿼리는 MYSQL WorkBench에서 사용함.
+
+
+1. USER 테이블
+CREATE TABLE `user` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `imei_id` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_g0chkaphedndg652qaodf6gly` (`imei_id`)
+) 
+
+2. 즐겨찾기 테이블
+CREATE TABLE `bookmark` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `deptnode` varchar(30) NOT NULL,
+  `destnode` varchar(30) NOT NULL,
+  `routeno1` varchar(10) NOT NULL,
+  `trouteno1` varchar(10) DEFAULT NULL,
+  `trouteno2` varchar(10) DEFAULT NULL,
+  `transnode1` varchar(30) DEFAULT NULL,
+  `transnode2` varchar(30) DEFAULT NULL,
+  `user_imei` varchar(40) NOT NULL,
+  `imei_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_ro3tbj3i0veu3fhm4r99wojkt` (`user_imei`),
+  KEY `FKdo5tkqtdxqgmn0uoad5hb6xeh` (`imei_id`),
+  CONSTRAINT `FKdo5tkqtdxqgmn0uoad5hb6xeh` FOREIGN KEY (`imei_id`) REFERENCES `user` (`id`)
+)
+
+
+3. 최근기록 테이블
+CREATE TABLE `recent` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `deptnode` varchar(30) NOT NULL,
+  `destnode` varchar(30) NOT NULL,
+  `routeno1` varchar(10) NOT NULL,
+  `trouteno1` varchar(10) DEFAULT NULL,
+  `trouteno2` varchar(10) DEFAULT NULL,
+  `transnode1` varchar(30) DEFAULT NULL,
+  `transnode2` varchar(30) DEFAULT NULL,
+  `user_imei` varchar(40) NOT NULL,
+  `imei_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_hm16chupyq428f2rm3s8tc4w6` (`user_imei`),
+  KEY `FKc3p1dd1ydepgap02dawumu8ha` (`imei_id`),
+  CONSTRAINT `FKc3p1dd1ydepgap02dawumu8ha` FOREIGN KEY (`imei_id`) REFERENCES `user` (`id`)
+)
